@@ -1,66 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<p align="center"> 
+  <img width="500" alt="logo_trashify (1)" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/6a2dd02f-fb0d-4921-b74d-8f1daf63beca">
 </p>
 
-## About Laravel
+# Project Proponent : Cahya Miranto 
+# Project Manager   : Swono Sibagariang
+# Teams
+1. 3312201038 - Nabilah
+2. 3312201049 - Yudha Batara
+3. 3312211047 - Gabriel Ronaldo Tarigan
+4. 3312201111 - Thaslim Khairul Padjri
+5. 3312201067 - M Abdillah
+6. 6042302014 - Rio Adjie Wiguna
+7. 6042302024 - Anindya Hudaa Kumala Tantri
+8. 6042302017 - Adinda Thalia Putri Salsabila
+<br><br>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#  💻 About Risk Management and Compliance Application for Persero Batam
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center"> 
+  <img width="500" alt="trashify" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/25f75634-e217-48e1-8a60-09cd9eb86e09">
+</p
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**📝 GENERAL DESCRIPTION**
+<br>PHP, Oracle, Features:
+1. The Risk Identification Module is a module that used to input potential risks on The company is included in the risk group.
+2. Risk monitoring and compliance status module is a module used for monitoring real-time risks that have been input including dashboards monitoring.
+<br>
 
-## Learning Laravel
+**📸 GENERAL DESIGN**
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/c62aa627-967f-4857-bc7a-3acf601cd00f"></p><br>
+<br>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**🖥️ SYSTEM SPESIFICATION**
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/2adec1e8-4b36-421a-967c-ab257e126af6"></p><br>
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/7d945094-6a78-4f48-8cc6-515eded830f6"></p><br>
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/da37116b-52b6-406e-8286-bb4ac677027c"></p><br>
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/f52a1b28-a671-4507-b039-1547ad20dff6"></p><br>
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/98610d34-7c1a-4b36-a285-9862f52c678a"></p><br>
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/5b53fe14-ec78-425d-890c-a49cbb521433"></p><br>
+<p align="center"><img alt="desain umum" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/ef908efb-0cd5-4110-86dc-3c89a9ad359f"></p><br>
+<br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# 📃 How to Install this Laravel Project
 
-## Laravel Sponsors
+## ▶️ Laravel Spesification
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- PHP ^10.x.x
+- PHP Composer
+- Database MySQL or MariaDB or Other
 
-### Premium Partners
+## ▶️ Installation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. Clone or download source code
+   - From the terminal, clone this repository `git clone https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam.git`
+   - If not use Git, you can **Download Zip** and _extract_ to directory web server (example: xampp/htdocs)
+2. `cd pbl-manrisk-perserobatam`
+3. `composer install`
+4. `cp .env.example .env`
+   - If not use Git,  rename file `.env.example` to `.env`
+5. From terminal `php artisan key:generate`
+6. Create **database from mysql** for this website
+7. **Setting the database** from file `.env`
+8. `php artisan migrate`
+9. `php artisan db:seed`
+10. `php artisan serve`
+11. Installation Done
+<br>
 
-## Contributing
+## ▶️ Demo
+Comming Soon 🚀🚀🚀
+<br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 📲 Application Features and Appearance
+## ☑️ All Features
+1. **Landing Page**
+   <p align="center"><img alt="landing" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/d264ff25-21d3-4da9-ab46-b25c5730bbac"></p><br>
 
-## Code of Conduct
+2. **Login & Register**
+   <p align="center"><img alt="login" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/8c4b9d5a-2f6d-4068-ab55-195c591650f6"></p><br>
+   <p align="center"><img alt="register" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/71ea16ce-b1b8-4d65-ba76-1497202e587b"></p><br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. **Dashboard**
+   <p align="center"><img alt="dashboard" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/a9884a68-4023-48ce-862e-698865e34614"></p><br>
+   <p align="center"><img alt="entry" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/81e4886d-2fad-4ebd-b84c-9656234db93c"></p><br>
+   <p align="center"><img alt="recomendation" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/b8e4dc8a-60f7-45d5-9622-f9077e271d5d"></p><br>
+   <p align="center"><img alt="followup" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/9b4283eb-ce1c-4b12-9fb5-e5242ab96ec7"></p><br>
+   <p align="center"><img alt="entry2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/e3f46728-5cf7-43fb-97ef-2d00ee656000"></p><br>
+   <p align="center"><img alt="recomendation2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/7290fa3b-04ec-49d6-84c2-959075ffdb65"></p><br>
+   <p align="center"><img alt="followup2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/ccd03f27-300b-4dd3-a774-03d5348010e2"></p><br>
+  
