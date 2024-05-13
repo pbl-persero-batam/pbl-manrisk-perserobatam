@@ -84,9 +84,13 @@ Comming Soon 🚀🚀🚀
 3. **Dashboard**
    <p align="center"><img alt="dashboard" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/a9884a68-4023-48ce-862e-698865e34614"></p><br>
    <p align="center"><img alt="entry" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/81e4886d-2fad-4ebd-b84c-9656234db93c"></p><br>
+   <p align="center"><img alt="entry" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/c8f54437-714b-4edb-bf86-f9d2a5bf5c14"></p><br>
    <p align="center"><img alt="recomendation" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/b8e4dc8a-60f7-45d5-9622-f9077e271d5d"></p><br>
+   <p align="center"><img alt="recomendation" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/5f600b8c-86e0-47fd-bf4e-bff8ca52a551"></p><br>
    <p align="center"><img alt="followup" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/9b4283eb-ce1c-4b12-9fb5-e5242ab96ec7"></p><br>
+   <p align="center"><img alt="followup" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/064cf534-021f-438f-8494-9b28ca6e5f59"></p><br>
    <p align="center"><img alt="entry2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/e3f46728-5cf7-43fb-97ef-2d00ee656000"></p><br>
+   <p align="center"><img alt="entry2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/1b090356-de2e-448c-b873-7a6ff1347968"></p><br>
    <p align="center"><img alt="recomendation2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/7290fa3b-04ec-49d6-84c2-959075ffdb65"></p><br>
    <p align="center"><img alt="followup2" src="https://github.com/pbl-persero-batam/pbl-manrisk-perserobatam/assets/92602362/ccd03f27-300b-4dd3-a774-03d5348010e2"></p><br>
   
