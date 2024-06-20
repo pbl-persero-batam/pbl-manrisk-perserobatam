@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+// Login & Register
+Route::view('/login', 'Auth/login');
+Route::view('/register', 'Auth/register');
+
+// Dashboard
+Route::view('/dashboard', 'Dashboard/dashboard');
+Route::view('/laporan-hasil-audit', 'Dashboard/laporan-hasil-audit');
+
+// Laporan
+Route::view('/laporan-kegiatan-spi', 'Laporan/laporan-kegiatan-spi');
