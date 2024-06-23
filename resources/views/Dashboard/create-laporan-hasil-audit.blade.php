@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="form-group floating-label-form-group">
                         <label for="anggota">Anggota SPI</label>
                         <div class="position-relative has-icon-left repeater-default">
                             <div data-repeater-list="repeater-group">

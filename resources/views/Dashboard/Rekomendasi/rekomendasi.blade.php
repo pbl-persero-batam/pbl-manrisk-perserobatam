@@ -3,7 +3,13 @@
 
 <head>
     @include('Template.head')
-    <title>SPI Navigator - Laporan Hasil Audit</title>
+    <title>SPI Navigator - Rekomendasi</title>
+    <style>
+        .form-container {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click"
@@ -22,13 +28,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Laporan Hasil Audit</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Rekomendasi</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Laporan Hasil Audit
+                                <li class="breadcrumb-item"><a href="/laporan-hasil-audit">Laporan Hasil Audit</a>
+                                </li>
+                                <li class="breadcrumb-item active">Rekomendasi
                                 </li>
                             </ol>
                         </div>
@@ -36,13 +44,14 @@
                 </div>
             </div>
             <div class="content-body">
-                <!-- Form Laporan Hasil Audit -->
+                <!-- Temuan -->
                 <section id="dom">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#tambahLHA">Tambah Laporan</button>
+                                    <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
+                                        data-target="#tambahRekomendasi">Tambah Rekomendasi</button>
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
@@ -51,10 +60,9 @@
                                                 <tr class="text-center">
                                                     <th>No</th>
                                                     <th>Nomor LHA</th>
-                                                    <th>Tanggal LHA</th>
-                                                    <th>Divisi/Unit</th>
-                                                    <th>Judul LHA</th>
-                                                    <th>Bentuk Kegiatan</th>
+                                                    <th>Temuan</th>
+                                                    <th>Rekomendasi</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -62,22 +70,23 @@
                                                 <tr class="text-center">
                                                     <td>1</td>
                                                     <td>87291289128</td>
-                                                    <td>10/06/2024</td>
-                                                    <td>SPI</td>
-                                                    <td>Pemeriksaan Lanjut Website SPI</td>
-                                                    <td>Pemeriksaan</td>
+                                                    <td>Tata Kelola Administratif SPI</td>
+                                                    <td>Peningkatan Tata Kelola Rekomendasi dengan Anggota SPI sebagai
+                                                        pelopor</td>
                                                     <td>
-                                                        <div class="btn-group mr-1 mb-1">
-                                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#large"><i class="fa fa-info"></i>&nbsp; Detail</button>
-                                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                        <div class="badge badge-warning round font-medium-1">
+                                                            <span>On Progress</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="First Group">
+                                                            <!-- Update Button -->
+                                                            <a href="#" class="btn btn-info mr-1"><i
+                                                                    class="fa fa-edit"></i></a>
+                                                            <!-- Delete Button -->
+                                                            <button class="btn btn-danger">
+                                                                <i class="fa fa-trash"></i>
                                                             </button>
-                                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(62px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                                <a class="dropdown-item" href="/temuan">Temuan</a>
-                                                                <a class="dropdown-item" href="/hal-hal-diperhatikan">Hal-hal yang perlu diperhatikan</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="/rekomendasi">Rekomendasi</a>
-                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -90,12 +99,9 @@
                     </div>
                 </section>
                 <!-- DOM - jQuery events table -->
-                {{-- Detail Data with Modal --}}
-                @include('Dashboard.detail-laporan-hasil-audit')
-                {{-- Detail Data with Modal --}}
-                {{-- Tambah LHA --}}
-                @include('Dashboard.create-laporan-hasil-audit')
-                {{-- Tambah LHA --}}
+                {{-- Tambah Modal --}}
+                @include('Dashboard.Rekomendasi.create-rekomendasi')
+                {{-- Tambah Modal --}}
             </div>
         </div>
     </div>
@@ -106,6 +112,21 @@
 
     {{-- JS --}}
     @include('Template.js')
+    <script>
+        function showForm() {
+            // Hide all forms
+            const forms = document.querySelectorAll('.form-container');
+            forms.forEach(form => form.style.display = 'none');
+
+            // Get the selected value
+            const selectedValue = document.getElementById('optionSelect').value;
+
+            // Show the selected form
+            if (selectedValue) {
+                document.getElementById(selectedValue).style.display = 'block';
+            }
+        }
+    </script>
     {{-- JS --}}
 
 </body>

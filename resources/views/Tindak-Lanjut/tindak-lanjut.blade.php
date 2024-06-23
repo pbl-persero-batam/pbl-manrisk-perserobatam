@@ -68,15 +68,19 @@
                                                     <td>Pemeriksaan Lanjut Website SPI</td>
                                                     <td>Pemeriksaan</td>
                                                     <td>Pemeriksaan Lanjutkan ke Bagian Keuangan</td>
-                                                    <td><Span class="color: green">Open</Span></td>
+                                                    <td>
+                                                        <div class="badge badge-success round font-medium-1">
+                                                            <span>Open</span>
+                                                        </div>
+                                                    </td>
                                                     <td>
                                                         <button type="button" class="btn btn-outline-success block btn-lg" data-toggle="modal"
                                                             data-target="#detailFU">
-                                                            Detail
+                                                            Ubah Status
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                </tfoot>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>

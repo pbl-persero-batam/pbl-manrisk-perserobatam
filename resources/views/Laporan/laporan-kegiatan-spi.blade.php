@@ -87,7 +87,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                </tfoot>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>

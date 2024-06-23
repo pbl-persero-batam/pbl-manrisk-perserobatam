@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="optionSelect">Status</label>
                         <select id="optionSelect" class="form-control" onchange="showForm()">
-                            <option value="status">-- Status Select --</option>
+                            <option selected>-- Pilih Status --</option>
                             <option value="open">Open</option>
                             <option value="progres">On Progress</option>
                             <option value="closed">Closed</option>
