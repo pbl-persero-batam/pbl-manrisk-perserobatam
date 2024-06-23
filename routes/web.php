@@ -25,5 +25,8 @@ Route::view('/register', 'Auth/register');
 Route::view('/dashboard', 'Dashboard/dashboard');
 Route::view('/laporan-hasil-audit', 'Dashboard/laporan-hasil-audit');
 
+// Tindak Lanjut
+Route::view('/tindak-lanjut', 'Tindak-Lanjut/tindak-lanjut');
+
 // Laporan
 Route::view('/laporan-kegiatan-spi', 'Laporan/laporan-kegiatan-spi');

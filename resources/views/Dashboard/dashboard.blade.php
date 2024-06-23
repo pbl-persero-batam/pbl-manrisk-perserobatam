@@ -33,7 +33,7 @@
                                         <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
                                             <div class="pb-1">
                                                 <div class="clearfix mb-1">
-                                                    <i class="icon-star font-large-1 blue-grey float-left mt-1"></i>
+                                                    <i class="fa fa-files-o font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
                                                         class="font-large-2 text-bold-300 info float-right">100</span>
                                                 </div>
@@ -45,7 +45,7 @@
                                         <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
                                             <div class="pb-1">
                                                 <div class="clearfix mb-1">
-                                                    <i class="icon-user font-large-1 blue-grey float-left mt-1"></i>
+                                                    <i class="fa fa-folder-open font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
                                                         class="font-large-2 text-bold-300 success float-right">50</span>
                                                 </div>
@@ -57,7 +57,7 @@
                                         <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
                                             <div class="pb-1">
                                                 <div class="clearfix mb-1">
-                                                    <i class="icon-shuffle font-large-1 blue-grey float-left mt-1"></i>
+                                                    <i class="fa fa-spinner font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
                                                         class="font-large-2 text-bold-300 warning float-right">20</span>
                                                 </div>
@@ -69,7 +69,7 @@
                                         <div class="col-lg-3 col-sm-12">
                                             <div class="pb-1">
                                                 <div class="clearfix mb-1">
-                                                    <i class="icon-wallet font-large-1 blue-grey float-left mt-1"></i>
+                                                    <i class="fa fa-folder font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
                                                         class="font-large-2 text-bold-300 danger float-right">30</span>
                                                 </div>
