@@ -35,7 +35,7 @@
                     <div id="closed" class="form-container">
                         <form>
                             <div class="form-group">
-                                <label for="attacment">Tutup Rekomendasi</label>
+                                <label for="attacment">Tutup Rekomendasi (Upload Surat/Nota Dinas)</label>
                                 <div class="position-relative has-icon-left">
                                     <input type="file" name="attacment" id="attacment" class="form-control">
                                     <div class="form-control-position">
