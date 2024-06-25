@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,23 @@ Route::get('/', function () {
 });
 
 // Login & Register
-Route::view('/login', 'Auth/login');
-Route::view('/register', 'Auth/register');
+Route::view('/login', 'Auth/login')->name('login');
+Route::view('/register', 'Auth/register')->name('register');
+
+// Authentication Routes
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('login.post');
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [AuthController::class, 'register'])->name('register.post');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::view('/dashboard', 'Dashboard/dashboard')->name('dashboard');
+    Route::view('/laporan-hasil-audit', 'Dashboard/laporan-hasil-audit')->name('laporan-hasil-audit');
+    Route::view('/modal', 'Dashboard/modal-laporan')->name('modal');
+});
+
 
 // Dashboard
 Route::view('/dashboard', 'Dashboard/dashboard');
