@@ -4,21 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DataTables\HalPerluDiperhatikanTable;
+use App\DataTables\RecomendedTable;
 use Illuminate\Support\Facades\DB;
-use App\Models\Notice;
+use App\Models\Recomended;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use App\Enums\Akibat;
+use App\Enums\Status;
+use App\Models\Audit;
 
-class HalPerluDiperhatikanController extends Controller
+class RecomendedController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(HalPerluDiperhatikanTable $dataTable, $auditId)
+    public function index(RecomendedTable $dataTable, $auditId)
     {
-        return $dataTable->render('Dashboard.Hal-Diperhatikan.hal-hal', ['auditId' => $auditId]);
+        return $dataTable->render('Dashboard.Rekomendasi.rekomendasi', ['auditId' => $auditId]);
     }
 
     /**
@@ -26,9 +27,10 @@ class HalPerluDiperhatikanController extends Controller
      */
     public function create($auditId)
     {
-        return view('Dashboard.Hal-Diperhatikan.form-hal-hal', [
+        return view('Dashboard..Rekomendasi.form-rekomendasi', [
             'auditId' => $auditId,
-            'akibat' => Akibat::asOptions(),
+            'audit' => Audit::where('id', $auditId)->first(),
+            'statuses' => Status::asOptions(),
         ]);
     }
 
@@ -39,25 +41,22 @@ class HalPerluDiperhatikanController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string',
-            'consequence' => 'required|string',
-            'description' => 'required|string',
+            'status' => 'required|string',
         ], [
-            'title.required' => 'Hal Yang Perlu Diperhatikan harus diisi!',
-            'consequence.required' => 'Akibat harus diisi!',
-            'description.required' => 'Keterangan harus diisi!',
+            'title.required' => 'Rekomendasi harus diisi!',
+            'status.required' => 'Status harus diisi!',
         ]);
 
         DB::beginTransaction();
         try {
 
-            Notice::create([
+            Recomended::create([
                 'audit_id' => $auditId,
                 'title' => $request->title,
-                'consequence' => $request->consequence,
-                'description' => $request->description,
+                'status' => $request->status,
             ]);
             DB::commit();
-            return redirect()->route('audit.notice.index', $auditId)->with('success', 'Successfully Added Data!');
+            return redirect()->route('audit.rekomendasi.index', $auditId)->with('success', 'Successfully Added Data!');
         } catch (\Throwable $th) {
             DB::rollback();
             return redirect()->back()->with('error', $th->getMessage());
@@ -69,6 +68,7 @@ class HalPerluDiperhatikanController extends Controller
      */
     public function show(string $id)
     {
+        //
     }
 
     /**
@@ -76,10 +76,11 @@ class HalPerluDiperhatikanController extends Controller
      */
     public function edit(string $auditId, string $id)
     {
-        return view('Dashboard.Hal-Diperhatikan.form-hal-hal', [
-            'data' => Notice::find($id),
+        return view('Dashboard..Rekomendasi.form-rekomendasi', [
+            'data' => Recomended::find($id),
             'auditId' => $auditId,
-            'akibat' => Akibat::asOptions(),
+            'audit' => Audit::where('id', $auditId)->first(),
+            'statuses' => Status::asOptions(),
         ]);
     }
 
@@ -90,24 +91,21 @@ class HalPerluDiperhatikanController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string',
-            'consequence' => 'required|string',
-            'description' => 'required|string',
+            'status' => 'required|string',
         ], [
-            'title.required' => 'Hal Yang Perlu Diperhatikan harus diisi!',
-            'consequence.required' => 'Akibat harus diisi!',
-            'description.required' => 'Keterangan harus diisi!',
+            'title.required' => 'Rekomendasi harus diisi!',
+            'status.required' => 'Status harus diisi!',
         ]);
 
         DB::beginTransaction();
         try {
-            Notice::where('id', $id)->update([
+            Recomended::where('id', $id)->update([
                 'audit_id' => $auditId,
                 'title' => $request->title,
-                'consequence' => $request->consequence,
-                'description' => $request->description,
+                'status' => $request->status,
             ]);
             DB::commit();
-            return redirect()->route('audit.notice.index', $auditId)->with('success', 'Successfully update Data!');
+            return redirect()->route('audit.rekomendasi.index', $auditId)->with('success', 'Successfully update Data!');
         } catch (\Throwable $th) {
             DB::rollback();
             return redirect()->back()->with('error', 'Failed to update Data!');
@@ -119,7 +117,7 @@ class HalPerluDiperhatikanController extends Controller
      */
     public function destroy(Request $request)
     {
-        $data = Notice::find($request->dataId);
+        $data = Recomended::find($request->dataId);
         try {
             $data->delete();
 

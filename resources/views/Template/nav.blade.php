@@ -7,7 +7,7 @@
                             class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item"><a class="navbar-brand" href="/dashboard"><img class="brand-logo"
                             alt="persero batam logo"
-                            src="{{ asset('../Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/icons/Logo-Persero-Batam.png') }}">
+                            src="{{ asset('Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/icons/Logo-Persero-Batam.png') }}">
                         <h3 class="brand-text">SPI Navigator</h3>
                     </a></li>
                 <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse"
@@ -113,7 +113,7 @@
                                     <div class="media">
                                         <div class="media-left"><span
                                                 class="avatar avatar-sm avatar-online rounded-circle"><img
-                                                    src="{{ asset('../Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-19.png') }}"
+                                                    src="{{ asset('Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-19.png') }}"
                                                     alt="avatar"><i></i></span></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Margaret Govan</h6>
@@ -127,7 +127,7 @@
                                     <div class="media">
                                         <div class="media-left"><span
                                                 class="avatar avatar-sm avatar-busy rounded-circle"><img
-                                                    src="{{ asset('../Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-2.png') }}"
+                                                    src="{{ asset('Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-2.png') }}"
                                                     alt="avatar"><i></i></span></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Bret Lezama</h6>
@@ -141,7 +141,7 @@
                                     <div class="media">
                                         <div class="media-left"><span
                                                 class="avatar avatar-sm avatar-online rounded-circle"><img
-                                                    src="{{ asset('../Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-3.png') }}"
+                                                    src="{{ asset('Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-3.png') }}"
                                                     alt="avatar"><i></i></span></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Carie Berra</h6>
@@ -155,7 +155,7 @@
                                     <div class="media">
                                         <div class="media-left"><span
                                                 class="avatar avatar-sm avatar-away rounded-circle"><img
-                                                    src="{{ asset('../Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-6.png') }}"
+                                                    src="{{ asset('Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-6.png') }}"
                                                     alt="avatar"><i></i></span></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">Eric Alsobrook</h6>
@@ -172,16 +172,13 @@
                     </li>
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                             href="#" data-toggle="dropdown"><span class="avatar avatar-online"><img
-                                    src="{{ asset('../Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-1.png') }}"
-                                    alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a
-                                class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My
-                                Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i>
-                                Task</a><a class="dropdown-item" href="chat-application.html"><i
-                                    class="ft-message-square"></i> Chats</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item"
-                                href="login-with-bg-image.html"><i class="ft-power"></i> Logout</a>
+                                    src="{{ asset('Robust-responsive-bootstrap-4-admin-template-build-system/app-assets/images/portrait/small/avatar-s-1.png') }}"
+                                    alt="avatar"><i></i></span><span class="user-name">{{ Auth::user()-> name
+                                }}</span></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}"><i class="ft-power"></i> Logout</a>
                         </div>
                     </li>
                 </ul>

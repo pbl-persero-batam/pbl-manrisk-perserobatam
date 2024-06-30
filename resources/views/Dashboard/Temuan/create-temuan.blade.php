@@ -11,6 +11,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger my-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (Route::is('audit.temuan.create'))
+                        <form action="{{ route('audit.temuan.store') }}" method="POST">
+                        @else
+                            <form action="{{ route('audit.temuan.update', $data->id) }}" method="POST">
+                                @method('PUT')
+                    @endif
+
+                    @csrf
                     <fieldset class="form-group floating-label-form-group">
                         <label for="temuan">Temuan</label>
                         <div class="position-relative has-icon-left">
@@ -39,14 +56,15 @@
                                 <div class="form-group">
                                     <label for="nilaiTemuan">Nilai Temuan</label>
                                     <div class="input-group">
-										<div class="input-group-prepend">
-											<span class="input-group-text">Rp.</span>
-										</div>
-										<input type="text" class="form-control square" placeholder="Nilai Temuan" aria-label="Rupiah (dalam rupiah)" name="nilaiTemuan">
-										<div class="input-group-append">
-											<span class="input-group-text">,00</span>
-										</div>
-									</div>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Rp.</span>
+                                        </div>
+                                        <input type="text" class="form-control square" placeholder="Nilai Temuan"
+                                            aria-label="Rupiah (dalam rupiah)" name="nilaiTemuan">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">,00</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -58,7 +76,8 @@
                                 <div class="input-group mb-1" data-repeater-item>
                                     <input type="text" class="form-control" placeholder="Penyebab">
                                     <span class="input-group-append" id="button-addon2">
-                                        <button class="btn btn-danger" type="button" data-repeater-delete><i class="ft-x"></i></button>
+                                        <button class="btn btn-danger" type="button" data-repeater-delete><i
+                                                class="ft-x"></i></button>
                                     </span>
                                     <div class="form-control-position">
                                         <i class="fa fa-file-o"></i>
@@ -77,7 +96,8 @@
                                 <div class="input-group mb-1" data-repeater-item>
                                     <input type="text" class="form-control" placeholder="Kriteria">
                                     <span class="input-group-append" id="button-addon2">
-                                        <button class="btn btn-danger" type="button" data-repeater-delete><i class="ft-x"></i></button>
+                                        <button class="btn btn-danger" type="button" data-repeater-delete><i
+                                                class="ft-x"></i></button>
                                     </span>
                                     <div class="form-control-position">
                                         <i class="fa fa-files-o"></i>

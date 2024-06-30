@@ -3,7 +3,7 @@
 
 <head>
     @include('Template.head')
-    <title>SPI Navigator - Laporan Hasil Audit</title>
+    <title>SPI Navigator - Laporan Kegiatan SPI</title>
 </head>
 
 <body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click"
@@ -22,13 +22,13 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Laporan Hasil Audit</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Laporan Kegiatan SPI</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Laporan Hasil Audit
+                                <li class="breadcrumb-item active">Laporan Kegiatan SPI
                                 </li>
                             </ol>
                         </div>
@@ -42,7 +42,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="{{ route('audit.create') }}" class="btn btn-primary mr-1">
+                                    <a href="{{ route('laporan.create') }}" class="btn btn-primary mr-1">
                                         Tambah Laporan</a>
                                 </div>
                                 <div class="card-content collapse show">
@@ -76,8 +76,8 @@
                 </section>
                 <!-- DOM - jQuery events table -->
                 {{-- Detail Data with Modal --}}
-                <div class="modal fade" id="detailLaporanHasilAudit" data-backdrop="static" data-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="detailLaporan" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -115,9 +115,9 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
         const detailData = (id) => {
-            $("#detailLaporanHasilAudit .modal-body").html();
+            $("#detailLaporan .modal-body").html();
             $.ajax({
-                url: "{{ url('audit/laporan-hasil-audit') }}" + `/${id}/show`,
+                url: "{{ url('laporan') }}" + `/${id}/show`,
                 type: 'GET',
                 dataType: 'JSON',
                 headers: {
@@ -125,30 +125,8 @@
                 },
                 success: function(response) {
                     if (response.data) {
-                        let members = '';
-                        let fileClose = '';
-
-                        if (response.data.member) {
-                            response.data.member.map((value, index) => {
-                                members += `<span>${index}. ${value}</span>`
-                            })
-                        }
-
-                        if (response.data.status == 3) {
-                            $(".btnDelete").hide();
-                            $(".btnEdit").hide();
-                            fileClose =
-                                `<tr>
-                                    <th>File Tutup Rekomendasi</th>
-                                    <th class="text-center">:</th>
-                                    <td><a href="${response.data.closed_file_surat}" class="btn btn-primary" target="_BLANK">Lihat File</a></td>
-                                </tr>`
-                        } else {
-                            $(".btnDelete").show();
-                            $(".btnEdit").show();
-                        }
-                        $("#detailLaporanHasilAudit").modal('show');
-                        $("#detailLaporanHasilAudit .modal-body").html(`
+                        $("#detailLaporan").modal('show');
+                        $("#detailLaporan .modal-body").html(`
                             <input type="hidden" class="form-control" name="dataId" id="dataId" value="${response.data.id}"/>
                             <table class="table w-100">
                                 <tr>
@@ -162,35 +140,24 @@
                                     <td >${response.data.date}</td>
                                 </tr>
                                 <tr>
-                                    <th>Divisi / Unit</th>
-                                    <th class="text-center">:</th>
-                                    <td >${response.data.divisi}</td>
-                                </tr>
-                                <tr>
                                     <th>Judul LHA</th>
                                     <th class="text-center">:</th>
                                     <td >${response.data.title}</td>
                                 </tr>
                                 <tr>
-                                    <th>Bentuk Kegiatan</th>
+                                    <th>Divisi / Unit</th>
                                     <th class="text-center">:</th>
-                                    <td>${response.data.activity}</td>
+                                    <td >${response.data.divisi}</td>
                                 </tr>
                                 <tr>
-                                    <th>Surat Tugas</th>
+                                    <th>Keterangan</th>
                                     <th class="text-center">:</th>
-                                    <td><a href="${response.data.file_surat_tugas}" class="btn btn-primary" target="_BLANK">Lihat File</a></td>
+                                    <td>${response.data.description}</td>
                                 </tr>
                                 <tr>
-                                    <th>Nota Dinas Permintaan Data</th>
+                                    <th>Attachment</th>
                                     <th class="text-center">:</th>
-                                    <td><a href="${response.data.file_nota_dinas}" class="btn btn-primary" target="_BLANK">Lihat File</a></td>
-                                </tr>
-                                ${fileClose}
-                                <tr>
-                                    <th>Anggota SPI</th>
-                                    <th class="text-center">:</th>
-                                    <td>${members}</td>
+                                    <td><a href="${response.data.attachment}" class="btn btn-primary" target="_BLANK">Lihat File</a></td>
                                 </tr>
                             </table>
                         `);
@@ -204,19 +171,19 @@
 
         const handlerEdit = () => {
             const dataId = $("#dataId").val();
-            location.href = "{{ url('audit/laporan-hasil-audit') }}" + `/${dataId}/edit`;
+            location.href = "{{ url('laporan') }}" + `/${dataId}/edit`;
         }
 
         const handlerCloseModal = () => {
-            $("#detailLaporanHasilAudit").modal('hide');
-            $("#detailLaporanHasilAudit .modal-body").html('')
+            $("#detailLaporan").modal('hide');
+            $("#detailLaporan .modal-body").html('')
         }
 
         const handlerDelete = () => {
             const dataId = $("#dataId").val();
             console.log(dataId);
             $.ajax({
-                url: "{{ url('audit/laporan-hasil-audit/destroy') }}",
+                url: "{{ url('laporan/destroy') }}",
                 type: 'POST',
                 data: {
                     dataId,

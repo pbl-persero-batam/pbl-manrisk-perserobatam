@@ -35,7 +35,7 @@
                                                 <div class="clearfix mb-1">
                                                     <i class="fa fa-files-o font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 info float-right">100</span>
+                                                        class="font-large-2 text-bold-300 info float-right">{{ App\Models\Audit::count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Laporan Hasil Audit</span>
@@ -45,9 +45,10 @@
                                         <div class="col-lg-3 col-sm-12 border-right-blue-grey border-right-lighten-5">
                                             <div class="pb-1">
                                                 <div class="clearfix mb-1">
-                                                    <i class="fa fa-folder-open font-large-1 blue-grey float-left mt-1"></i>
+                                                    <i
+                                                        class="fa fa-folder-open font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 success float-right">50</span>
+                                                        class="font-large-2 text-bold-300 success float-right">{{ App\Models\Audit::where('status', 1)->count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Terbuka</span>
@@ -59,7 +60,7 @@
                                                 <div class="clearfix mb-1">
                                                     <i class="fa fa-spinner font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 warning float-right">20</span>
+                                                        class="font-large-2 text-bold-300 warning float-right">{{ App\Models\Audit::where('status', 2)->count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Progres</span>
@@ -71,7 +72,7 @@
                                                 <div class="clearfix mb-1">
                                                     <i class="fa fa-folder font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 danger float-right">30</span>
+                                                        class="font-large-2 text-bold-300 danger float-right">{{ App\Models\Audit::where('status', 3)->count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Selesai</span>

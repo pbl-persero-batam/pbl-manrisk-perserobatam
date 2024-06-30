@@ -34,7 +34,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="/laporan-hasil-audit">Laporan Hasil Audit</a>
+                                <li class="breadcrumb-item"><a href="{{ route('audit.index') }}">Laporan Hasil Audit</a>
                                 </li>
                                 <li class="breadcrumb-item active">Rekomendasi
                                 </li>
@@ -50,48 +50,32 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
-                                        data-target="#tambahRekomendasi">Tambah Rekomendasi</button>
+                                    <a href="{{ route('audit.rekomendasi.create', $auditId) }}"
+                                        class="btn btn-primary mr-1">Tambah Rekomendasi</a>
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <table class="table table-striped table-bordered dom-jQuery-events">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>Nomor LHA</th>
-                                                    <th>Temuan</th>
-                                                    <th>Rekomendasi</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td>1</td>
-                                                    <td>87291289128</td>
-                                                    <td>Tata Kelola Administratif SPI</td>
-                                                    <td>Peningkatan Tata Kelola Rekomendasi dengan Anggota SPI sebagai
-                                                        pelopor</td>
-                                                    <td>
-                                                        <div class="badge badge-warning round font-medium-1">
-                                                            <span>On Progress</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="btn-group" role="group" aria-label="First Group">
-                                                            <!-- Update Button -->
-                                                            <a href="#" class="btn btn-info mr-1"><i
-                                                                    class="fa fa-edit"></i></a>
-                                                            <!-- Delete Button -->
-                                                            <button class="btn btn-danger">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        @if (Session::get('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ Session::get('success') }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        @if (Session::get('error'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ Session::get('danger') }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        <div class="table-responsive mt-3">
+                                            {{ $dataTable->table(['class' => 'table table-striped table-bordered dom-jQuery-events', 'id' => 'table-id']) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -112,19 +96,35 @@
 
     {{-- JS --}}
     @include('Template.js')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
-        function showForm() {
-            // Hide all forms
-            const forms = document.querySelectorAll('.form-container');
-            forms.forEach(form => form.style.display = 'none');
+        const handlerEdit = (dataId) => {
+            location.href = "{{ url('audit/rekomendasi/' . $auditId) }}" + `/${dataId}/edit`;
+        }
 
-            // Get the selected value
-            const selectedValue = document.getElementById('optionSelect').value;
+        const handlerDelete = (dataId) => {
+            $.ajax({
+                url: "{{ url('audit/rekomendasi/destroy') }}",
+                type: 'POST',
+                data: {
+                    dataId,
+                    '_method': 'delete'
+                },
+                dataType: 'JSON',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    alert(response.message)
+                    if (response.status) {
+                        setTimeout(() => location.reload(), 1000);
+                    }
 
-            // Show the selected form
-            if (selectedValue) {
-                document.getElementById(selectedValue).style.display = 'block';
-            }
+                },
+                error: function(xhr, error, status) {
+                    alert(error)
+                },
+            });
         }
     </script>
     {{-- JS --}}

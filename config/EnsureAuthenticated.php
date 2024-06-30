@@ -22,4 +22,4 @@ class EnsureAuthenticated
 
         return $next($request);
     }
-}
+} 

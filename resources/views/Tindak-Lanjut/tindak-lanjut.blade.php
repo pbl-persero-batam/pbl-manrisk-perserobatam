@@ -49,39 +49,27 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <table class="table table-striped table-bordered dom-jQuery-events">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>Nomor LHA</th>
-                                                    <th>Judul LHA</th>
-                                                    <th>Temuan</th>
-                                                    <th>Rekomendasi</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td>1</td>
-                                                    <td>87291289128</td>
-                                                    <td>Pemeriksaan Lanjut Website SPI</td>
-                                                    <td>Pemeriksaan</td>
-                                                    <td>Pemeriksaan Lanjutkan ke Bagian Keuangan</td>
-                                                    <td>
-                                                        <div class="badge badge-success round font-medium-1">
-                                                            <span>Open</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-outline-success block btn-lg" data-toggle="modal"
-                                                            data-target="#detailFU">
-                                                            Ubah Status
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        @if (Session::get('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ Session::get('success') }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        @if (Session::get('error'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ Session::get('danger') }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        <div class="table-responsive mt-3">
+                                            {{ $dataTable->table(['class' => 'table table-striped table-bordered dom-jQuery-events', 'id' => 'table-id']) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -89,12 +77,25 @@
                     </div>
                 </section>
                 <!-- DOM - jQuery events table -->
-                {{-- Detail Data with Modal --}}
-                @include('Tindak-Lanjut.detail-tindak-lanjut')
-                {{-- Detail Data with Modal --}}
-                {{-- Tambah LHA --}}
-                @include('Dashboard.create-laporan-hasil-audit')
-                {{-- Tambah LHA --}}
+                <div class="modal fade" id="detailLaporanHasilAudit" data-backdrop="static" data-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel"><strong>Ubah Status</strong></h5>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" onclick="handlerSave()"><i
+                                        class="fa fa-check-square-o"></i> Save</button>
+                                <button type="button" class="btn grey btn-outline-secondary"
+                                    onclick="handlerCloseModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -105,19 +106,145 @@
 
     {{-- JS --}}
     @include('Template.js')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
-        function showForm() {
-            // Hide all forms
-            const forms = document.querySelectorAll('.form-container');
-            forms.forEach(form => form.style.display = 'none');
+        const handlerSetStatus = (id) => {
+            $("#detailLaporanHasilAudit .modal-body").html();
+            $.ajax({
+                url: "{{ url('tindak-lanjut') }}" + `/${id}/show`,
+                type: 'GET',
+                dataType: 'JSON',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.data) {
+                        let findings = '';
+                        let recommended = '';
+                        let status = '';
 
-            // Get the selected value
-            const selectedValue = document.getElementById('optionSelect').value;
+                        if (response.data.findings) {
+                            response.data.findings.map((value, index) => {
+                                findings += `<span>${index + 1}. ${value.title}</span><br>`
+                            })
+                        }
 
-            // Show the selected form
-            if (selectedValue) {
-                document.getElementById(selectedValue).style.display = 'block';
+                        if (response.data.recomended) {
+                            response.data.recomended.map((value, index) => {
+                                recommended += `<span>${index + 1}. ${value.title}</span><br>`
+                            })
+                        }
+
+                        if (response.statusData) {
+                            status +=
+                                `<select class="form-control" name="setStatus" id="setStatus" onchange="handlerChangeStatus(this.value)">`;
+                            status += `<option value="">Pilih Status</option>`
+                            response.statusData.map((value) => {
+                                status += `<option value="${value.value}">${value.label}</option>`
+                            })
+                            status += `</select>`;
+                        }
+                        $("#detailLaporanHasilAudit").modal('show');
+                        $("#detailLaporanHasilAudit .modal-body").html(`
+                            <input type="hidden" class="form-control" name="dataId" id="dataId" value="${response.data.id}"/>
+                            <table class="table w-100">
+                                <tr>
+                                    <th width="25%">Nomor LHA</th>
+                                    <th width="2%" class="text-center">:</th>
+                                    <td width="71%">${response.data.code}</td>
+                                </tr>
+                                <tr>
+                                    <th>Judul LHA</th>
+                                    <th class="text-center">:</th>
+                                    <td >${response.data.title}</td>
+                                </tr>
+                                <tr>
+                                    <th>Temuan</th>
+                                    <th class="text-center">:</th>
+                                    <td>${findings}</td>
+                                </tr>
+                                <tr>
+                                    <th>Rekomendasi</th>
+                                    <th class="text-center">:</th>
+                                    <td>${recommended}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <th class="text-center">:</th>
+                                    <td>${status}</td>
+                                </tr>
+                                <tr id="fieldClosedAudit" style="display: none">
+                                    <th>Closed (Upload Surat/Nota Dinas)</th>
+                                    <th class="text-center">:</th>
+                                    <td>
+                                        <div class="position-relative has-icon-left">
+                                            <input type="file" name="attacment" id="attacment" class="form-control">
+                                            <div class="form-control-position">
+                                                <i class="fa fa-file-pdf-o"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        `);
+                    }
+                },
+                error: function(xhr, error, status) {
+                    alert(error)
+                },
+            });
+        }
+
+        const handlerChangeStatus = (status) => {
+            if (status == 3) {
+                $("#fieldClosedAudit").show();
+            } else {
+                $("#fieldClosedAudit").hide();
+                $("#fieldClosedAudit").val('');
             }
+        }
+
+        const handlerCloseModal = () => {
+            $("#detailLaporanHasilAudit").modal('hide');
+            $("#detailLaporanHasilAudit .modal-body").html('')
+        }
+
+        const handlerSave = () => {
+            const dataId = $("#dataId").val();
+            const status = $("#setStatus").val();
+            const fileDinas = $("#attacment");
+
+            if (status == '') alert('status harus diisi');
+            if (status == 3 && fileDinas.val() == '') alert('uplaod file tidak boleh kosong');
+
+            const formData = new FormData();
+            formData.append('status', status);
+            if (status == 3) {
+                formData.append('file_dinas', fileDinas[0].files[0]);
+            }
+            $.ajax({
+                url: "{{ url('tindak-lanjut') }}" + `/${dataId}/update`,
+                type: 'POST',
+                dataType: 'JSON',
+                processData: false,
+                contentType: false,
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.status) {
+                        alert(response.message);
+                        handlerCloseModal();
+                        location.reload(); // reload page
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, error, status) {
+                    alert(error)
+                },
+            });
         }
     </script>
     {{-- JS --}}

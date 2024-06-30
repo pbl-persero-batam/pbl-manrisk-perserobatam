@@ -4,16 +4,17 @@
             <li class=" nav-item"><a href="/dashboard"><i class="fa fa-home"></i><span
                         class="menu-title">Dashboard</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="/laporan-hasil-audit">Laporan Hasil Audit</a>
+                    <li><a class="menu-item" href="{{ route('audit.index') }}">Laporan Hasil Audit</a>
                     </li>
-                    <li><a class="menu-item" href="/tindak-lanjut">Tindak
+                    <li><a class="menu-item" href="{{ route('tindak-lanjut.index') }}">Tindak
                             Lanjut</a>
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="fa fa-files-o"></i><span class="menu-title">Laporan</span></a>
+            <li class=" nav-item"><a href="#"><i class="fa fa-files-o"></i><span
+                        class="menu-title">Laporan</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="/laporan-kegiatan-spi">Laporan Kegiatan SPI</a>
+                    <li><a class="menu-item" href="{{ route('laporan.index') }}">Laporan Kegiatan SPI</a>
                     </li>
                 </ul>
             </li>

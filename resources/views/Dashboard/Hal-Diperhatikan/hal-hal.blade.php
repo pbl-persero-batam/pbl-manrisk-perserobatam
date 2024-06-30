@@ -28,7 +28,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="/laporan-hasil-audit">Laporan Hasil Audit</a>
+                                <li class="breadcrumb-item"><a href="{{ route('audit.index') }}">Laporan Hasil Audit</a>
                                 </li>
                                 <li class="breadcrumb-item active">Hal-hal Yang Perlu Diperhatikan
                                 </li>
@@ -44,52 +44,38 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
-                                        data-target="#tambahHal">Tambah Hal-hal Yang Perlu Diperhatikan</button>
+                                    <a href="{{ route('audit.notice.create', $auditId) }}"
+                                        class="btn btn-primary mr-1">Tambah Hal-hal Yang Perlu Diperhatikan</a>
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <table class="table table-striped table-bordered dom-jQuery-events">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>Hal Yang Perlu Diperhatikan</th>
-                                                    <th>Keterangan</th>
-                                                    <th>Akibat</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td>1</td>
-                                                    <td>Administrasi Bagian Frontoffice</td>
-                                                    <td>Administrasi bagian front office perlu ditingkatkan kembali demi
-                                                        kenyamanan dari klien</td>
-                                                    <td>Risiko Tata Kelola Administratif & Operasional</td>
-                                                    <td>
-                                                        <div class="btn-group" role="group" aria-label="First Group">
-                                                            <!-- Update Button -->
-                                                            <a href="#" class="btn btn-info mr-1"><i
-                                                                    class="fa fa-edit"></i></a>
-                                                            <!-- Delete Button -->
-                                                            <button class="btn btn-danger">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        @if (Session::get('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ Session::get('success') }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        @if (Session::get('error'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ Session::get('danger') }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        <div class="table-responsive mt-3">
+                                            {{ $dataTable->table(['class' => 'table table-striped table-bordered dom-jQuery-events', 'id' => 'table-id']) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- DOM - jQuery events table -->
-                {{-- Tambah Modal --}}
-                @include('Dashboard.Hal-Diperhatikan.create-hal-hal')
-                {{-- Tambah Modal --}}
             </div>
         </div>
     </div>
@@ -101,6 +87,37 @@
     {{-- JS --}}
     @include('Template.js')
     {{-- JS --}}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    <script>
+        const handlerEdit = (dataId) => {
+            location.href = "{{ url('audit/notice/' . $auditId) }}" + `/${dataId}/edit`;
+        }
+
+        const handlerDelete = (dataId) => {
+            $.ajax({
+                url: "{{ url('audit/notice/destroy') }}",
+                type: 'POST',
+                data: {
+                    dataId,
+                    '_method': 'delete'
+                },
+                dataType: 'JSON',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    alert(response.message)
+                    if (response.status) {
+                        setTimeout(() => location.reload(), 1000);
+                    }
+
+                },
+                error: function(xhr, error, status) {
+                    alert(error)
+                },
+            });
+        }
+    </script>
 
 </body>
 
