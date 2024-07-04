@@ -19,5 +19,11 @@ class UserSeeder extends Seeder
             'email' => 'rio@gmail.com',
             'password' => Hash::make('password'),
         ]);
+
+        User::create([
+            'name' => 'Admin SPI',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

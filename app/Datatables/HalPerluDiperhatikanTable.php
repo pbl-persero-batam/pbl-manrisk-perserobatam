@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\JenisTemuan;
 use App\Enums\Akibat;
+use Illuminate\Http\Request;
 
 class HalPerluDiperhatikanTable extends DataTable
 {
@@ -53,9 +54,12 @@ class HalPerluDiperhatikanTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Notice $model): QueryBuilder
+    public function query(Notice $model, Request $request): QueryBuilder
     {
-        return $model->newQuery();
+        $url = explode('/', $request->url());
+        return $model
+            ->where('audit_id', end($url))
+            ->newQuery();
     }
 
     /**

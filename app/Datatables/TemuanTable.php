@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\JenisTemuan;
 use App\Enums\Akibat;
+use Illuminate\Http\Request;
 
 class TemuanTable extends DataTable
 {
@@ -74,9 +75,12 @@ class TemuanTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Finding $model): QueryBuilder
+    public function query(Finding $model, Request $request): QueryBuilder
     {
-        return $model->newQuery();
+        $url = explode('/', $request->url());
+        return $model
+            ->where('audit_id', end($url))
+            ->newQuery();
     }
 
     /**

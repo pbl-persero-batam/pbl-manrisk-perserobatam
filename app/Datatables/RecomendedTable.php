@@ -13,6 +13,7 @@ use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Status;
+use Illuminate\Http\Request;
 
 class RecomendedTable extends DataTable
 {
@@ -60,9 +61,12 @@ class RecomendedTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Recomended $model): QueryBuilder
+    public function query(Recomended $model, Request $request): QueryBuilder
     {
-        return $model->newQuery();
+        $url = explode('/', $request->url());
+        return $model
+            ->where('audit_id', end($url))
+            ->newQuery();
     }
 
     /**
