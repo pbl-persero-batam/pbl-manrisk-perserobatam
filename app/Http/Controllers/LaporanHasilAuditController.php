@@ -70,7 +70,6 @@ class LaporanHasilAuditController extends Controller
                 'file_surat_tugas' => $suratDinas,
                 'file_nota_dinas' => $notaDinas,
                 'member' => !$member ? NULL : json_encode($member),
-                'status' => 1
             ]);
             DB::commit();
             return redirect()->route('audit.index')->with('success', 'Successfully Added Data!');

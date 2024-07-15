@@ -126,26 +126,11 @@
                 success: function(response) {
                     if (response.data) {
                         let members = '';
-                        let fileClose = '';
 
                         if (response.data.member) {
                             response.data.member.map((value, index) => {
-                                members += `<span>${index}. ${value}</span>`
+                                members += `<span>${index + 1}. ${value}</span><br>`
                             })
-                        }
-
-                        if (response.data.status == 3) {
-                            $(".btnDelete").hide();
-                            $(".btnEdit").hide();
-                            fileClose =
-                                `<tr>
-                                    <th>File Tutup Rekomendasi</th>
-                                    <th class="text-center">:</th>
-                                    <td><a href="${response.data.closed_file_surat}" class="btn btn-primary" target="_BLANK">Lihat File</a></td>
-                                </tr>`
-                        } else {
-                            $(".btnDelete").show();
-                            $(".btnEdit").show();
                         }
                         $("#detailLaporanHasilAudit").modal('show');
                         $("#detailLaporanHasilAudit .modal-body").html(`
@@ -186,7 +171,6 @@
                                     <th class="text-center">:</th>
                                     <td><a href="${response.data.file_nota_dinas}" class="btn btn-primary" target="_BLANK">Lihat File</a></td>
                                 </tr>
-                                ${fileClose}
                                 <tr>
                                     <th>Anggota SPI</th>
                                     <th class="text-center">:</th>
@@ -214,29 +198,32 @@
 
         const handlerDelete = () => {
             const dataId = $("#dataId").val();
-            console.log(dataId);
-            $.ajax({
-                url: "{{ url('audit/laporan-hasil-audit/destroy') }}",
-                type: 'POST',
-                data: {
-                    dataId,
-                    '_method': 'delete'
-                },
-                dataType: 'JSON',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    alert(response.message)
-                    if (response.status) {
-                        setTimeout(() => location.reload(), 1000);
-                    }
+            let confirmation = confirm("Yakin ingin menghapus data?");
+            if (confirmation) {
+                $.ajax({
+                    url: "{{ url('audit/laporan-hasil-audit/destroy') }}",
+                    type: 'POST',
+                    data: {
+                        dataId,
+                        '_method': 'delete'
+                    },
+                    dataType: 'JSON',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        alert(response.message)
+                        if (response.status) {
+                            setTimeout(() => location.reload(), 1000);
+                        }
 
-                },
-                error: function(xhr, error, status) {
-                    alert(error)
-                },
-            });
+                    },
+                    error: function(xhr, error, status) {
+                        alert(error)
+                    },
+                });
+            }
+
         }
     </script>
 

@@ -181,29 +181,32 @@
 
         const handlerDelete = () => {
             const dataId = $("#dataId").val();
-            console.log(dataId);
-            $.ajax({
-                url: "{{ url('laporan/destroy') }}",
-                type: 'POST',
-                data: {
-                    dataId,
-                    '_method': 'delete'
-                },
-                dataType: 'JSON',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    alert(response.message)
-                    if (response.status) {
-                        setTimeout(() => location.reload(), 1000);
-                    }
+            let confirmation = confirm("Yakin ingin menghapus data?");
+            if (confirmation) {
+                $.ajax({
+                    url: "{{ url('laporan/destroy') }}",
+                    type: 'POST',
+                    data: {
+                        dataId,
+                        '_method': 'delete'
+                    },
+                    dataType: 'JSON',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        alert(response.message)
+                        if (response.status) {
+                            setTimeout(() => location.reload(), 1000);
+                        }
 
-                },
-                error: function(xhr, error, status) {
-                    alert(error)
-                },
-            });
+                    },
+                    error: function(xhr, error, status) {
+                        alert(error)
+                    },
+                });
+            }
+
         }
     </script>
 

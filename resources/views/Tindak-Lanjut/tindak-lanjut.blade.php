@@ -120,18 +120,11 @@
                 success: function(response) {
                     if (response.data) {
                         let findings = '';
-                        let recommended = '';
                         let status = '';
 
-                        if (response.data.findings) {
-                            response.data.findings.map((value, index) => {
+                        if (response.data.audit.findings) {
+                            response.data.audit.findings.map((value, index) => {
                                 findings += `<span>${index + 1}. ${value.title}</span><br>`
-                            })
-                        }
-
-                        if (response.data.recomended) {
-                            response.data.recomended.map((value, index) => {
-                                recommended += `<span>${index + 1}. ${value.title}</span><br>`
                             })
                         }
 
@@ -151,12 +144,12 @@
                                 <tr>
                                     <th width="25%">Nomor LHA</th>
                                     <th width="2%" class="text-center">:</th>
-                                    <td width="71%">${response.data.code}</td>
+                                    <td width="71%">${response.data.audit.code}</td>
                                 </tr>
                                 <tr>
                                     <th>Judul LHA</th>
                                     <th class="text-center">:</th>
-                                    <td >${response.data.title}</td>
+                                    <td >${response.data.audit.title}</td>
                                 </tr>
                                 <tr>
                                     <th>Temuan</th>
@@ -166,7 +159,7 @@
                                 <tr>
                                     <th>Rekomendasi</th>
                                     <th class="text-center">:</th>
-                                    <td>${recommended}</td>
+                                    <td>${response.data.title}</td>
                                 </tr>
                                 <tr>
                                     <th>Status</th>

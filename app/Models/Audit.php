@@ -20,10 +20,6 @@ class Audit extends Model
     {
         return $value ? url('storage/' . $value) : null;
     }
-    public function getClosedFileSuratAttribute($value)
-    {
-        return $value ? url('storage/' . $value) : null;
-    }
 
     public function getMemberAttribute($value)
     {

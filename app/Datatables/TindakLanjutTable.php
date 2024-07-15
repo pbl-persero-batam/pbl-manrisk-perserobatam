@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Audit;
+use App\Models\Recomended;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -28,20 +28,20 @@ class TindakLanjutTable extends DataTable
                 $index = $query->get()->search($row) + 1;
                 return $index;
             })
+            ->addColumn('code', function ($row) {
+                return $row->audit->code;
+            })
+            ->addColumn('title', function ($row) {
+                return $row->audit->title;
+            })
+            ->addColumn('rekomendasi', function ($row) {
+                return $row->title;
+            })
             ->addColumn('temuan', function ($row) {
                 $result = "";
                 $result .= '<ol>';
-                foreach ($row->findings as $key => $value) {
-                    $result .= '<ul>' . $value->title . '</ul>';
-                }
-                $result .= '</ol>';
-                return $result;
-            })
-            ->addColumn('rekomendasi', function ($row) {
-                $result = "";
-                $result .= '<ol>';
-                foreach ($row->recomended as $key => $value) {
-                    $result .= '<ul>' . $value->title . '</ul>';
+                foreach ($row->audit->findings as $key => $value) {
+                    $result .= '<li>' . $value->title . '</li>';
                 }
                 $result .= '</ol>';
                 return $result;
@@ -64,7 +64,7 @@ class TindakLanjutTable extends DataTable
                 ';
                 return $btn;
             })
-            ->rawColumns(['no', 'temuan', 'rekomendasi', 'status', 'action'])
+            ->rawColumns(['no', 'code', 'title', 'temuan', 'rekomendasi', 'status', 'action'])
             ->addIndexColumn()
             ->setRowId('id');
     }
@@ -72,12 +72,10 @@ class TindakLanjutTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Audit $model): QueryBuilder
+    public function query(Recomended $model): QueryBuilder
     {
         return $model
-            ->with('findings', 'recomended')->whereIn('status', [1, 2])
-            ->whereHas('findings')
-            ->whereHas('recomended')
+            ->with('audit', 'audit.findings')->whereIn('status', [1, 2])
             ->newQuery();
     }
 

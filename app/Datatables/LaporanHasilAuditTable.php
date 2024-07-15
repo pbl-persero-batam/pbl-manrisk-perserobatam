@@ -29,15 +29,6 @@ class LaporanHasilAuditTable extends DataTable
                 $index = $query->get()->search($row) + 1;
                 return $index;
             })
-            ->addColumn('status', function ($row) {
-                if ($row->status == 1) {
-                    return '<span class="badge badge-primary">' . Status::getDescription($row->status) . '</span>';
-                } else if ($row->status == 2) {
-                    return '<span class="badge badge-warning">' . Status::getDescription($row->status) . '</span>';
-                } else {
-                    return '<span class="badge badge-success">' . Status::getDescription($row->status) . '</span>';
-                }
-            })
             ->addColumn('action', function ($row) {
                 $btn =   '
                     <div class="btn-group mr-1 mb-1">
@@ -106,7 +97,6 @@ class LaporanHasilAuditTable extends DataTable
             Column::make('date')->title('Tanggal LHA'),
             Column::make('divisi')->title('Divisi / Unit'),
             Column::make('activity')->title('Bentuk Kegiatan'),
-            Column::make('status')->title('Status'),
             Column::computed('action')->title('Aksi')
                 ->exportable(false)
                 ->printable(false)

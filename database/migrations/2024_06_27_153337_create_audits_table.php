@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('activity')->nullable();
             $table->text('file_surat_tugas')->nullable();
             $table->text('file_nota_dinas')->nullable();
-            $table->text('closed_file_surat')->nullable();
             $table->json('member')->nullable();
-            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

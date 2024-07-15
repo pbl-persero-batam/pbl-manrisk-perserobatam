@@ -20,6 +20,7 @@ return new class extends Migration
                 ->onUpdate('cascade');
             $table->string('title')->nullable();
             $table->integer('status')->nullable();
+            $table->text('closed_file_surat')->nullable();
             $table->timestamps();
         });
     }

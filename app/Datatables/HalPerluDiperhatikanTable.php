@@ -79,7 +79,7 @@ class HalPerluDiperhatikanTable extends DataTable
             ->selectStyleSingle()
             ->buttons(
                 Button::make('pageLength'),
-                Button::make('excel'),
+                // Button::make('excel'),
                 // Button::make('print'),
                 // Button::make('pdf'),
             );

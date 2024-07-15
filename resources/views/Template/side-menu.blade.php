@@ -4,7 +4,7 @@
             <li class=" nav-item"><a href="/dashboard"><i class="fa fa-home"></i><span
                         class="menu-title">Dashboard</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="{{ route('audit.index') }}">Laporan Hasil Audit</a>
+                    <li><a class="menu-item active" href="{{ route('audit.index') }}">Laporan Hasil Audit</a>
                     </li>
                     <li><a class="menu-item" href="{{ route('tindak-lanjut.index') }}">Tindak
                             Lanjut</a>

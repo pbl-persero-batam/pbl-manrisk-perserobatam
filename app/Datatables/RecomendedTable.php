@@ -41,19 +41,30 @@ class RecomendedTable extends DataTable
                     return '<span class="badge badge-success">' . Status::getDescription($row->status) . '</span>';
                 }
             })
+            ->addColumn('fileClose', function ($row) {
+                if ($row->status == 3) {
+                    return '<a href="' . $row->closed_file_surat . '" class="btn btn-primary" target="_BLANK">Lihat File</a>';
+                }
+                return '-';
+            })
             ->addColumn('action', function ($row) {
-                $btn =   '
-                    <div class="btn-group" role="group" aria-label="First Group">
-                        <button type="button" class="btn btn-info mr-1" onclick="handlerEdit(\'' . $row->id . '\')"><i
-                                class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger" onclick="handlerDelete(\'' . $row->id . '\')">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                ';
+                if ($row->status != 3) {
+                    $btn =   '
+                        <div class="btn-group" role="group" aria-label="First Group">
+                            <button type="button" class="btn btn-info mr-1" onclick="handlerEdit(\'' . $row->id . '\')"><i
+                                    class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="handlerDelete(\'' . $row->id . '\')">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    ';
+                } else {
+                    $btn = '-';
+                }
+
                 return $btn;
             })
-            ->rawColumns(['no', 'codeLHA', 'status', 'action'])
+            ->rawColumns(['no', 'codeLHA', 'status', 'fileClose', 'action'])
             ->addIndexColumn()
             ->setRowId('id');
     }
@@ -86,7 +97,7 @@ class RecomendedTable extends DataTable
             ->selectStyleSingle()
             ->buttons(
                 Button::make('pageLength'),
-                Button::make('excel'),
+                // Button::make('excel'),
                 // Button::make('print'),
                 // Button::make('pdf'),
             );
@@ -105,6 +116,7 @@ class RecomendedTable extends DataTable
             Column::computed('codeLHA')->title('Nomor LHA'),
             Column::make('title')->title('Rekomendasi'),
             Column::make('status')->title('Status'),
+            Column::make('fileClose')->title('File Tutup Rekomendasi'),
             Column::computed('action')->title('Aksi')
                 ->exportable(false)
                 ->printable(false)

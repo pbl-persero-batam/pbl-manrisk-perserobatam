@@ -89,7 +89,7 @@
                                                     <div class="position-relative has-icon-left">
                                                         <input type="text" id="nomorLaporan"
                                                             class="form-control @error('nomorLaporan') is-invalid @enderror"
-                                                            placeholder="Nomor LHA" name="nomorLaporan"
+                                                            placeholder="Nomor Laporan" name="nomorLaporan"
                                                             value="{{ old('nomorLaporan', $data->code ?? '') }}">
                                                         <div class="form-control-position">
                                                             <i class="fa fa-briefcase"></i>
@@ -117,7 +117,7 @@
                                                     <div class="position-relative has-icon-left">
                                                         <input type="text" id="judul"
                                                             class="form-control @error('judul') is-invalid @enderror"
-                                                            placeholder="Judul LHA" name="judul"
+                                                            placeholder="Judul Laporan" name="judul"
                                                             value="{{ old('judul', $data->title ?? '') }}">
                                                         <div class="form-control-position">
                                                             <i class="fa fa-envelope"></i>

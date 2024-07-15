@@ -16,4 +16,9 @@ class Recomended extends Model
     {
         return $this->belongsTo(Audit::class, 'audit_id');
     }
+
+    public function getClosedFileSuratAttribute($value)
+    {
+        return $value ? url('storage/' . $value) : null;
+    }
 }

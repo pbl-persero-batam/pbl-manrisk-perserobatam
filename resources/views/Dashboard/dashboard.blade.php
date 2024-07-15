@@ -48,7 +48,7 @@
                                                     <i
                                                         class="fa fa-folder-open font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 success float-right">{{ App\Models\Audit::where('status', 1)->count() }}</span>
+                                                        class="font-large-2 text-bold-300 success float-right">{{ App\Models\Recomended::where('status', 1)->count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Terbuka</span>
@@ -60,7 +60,7 @@
                                                 <div class="clearfix mb-1">
                                                     <i class="fa fa-spinner font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 warning float-right">{{ App\Models\Audit::where('status', 2)->count() }}</span>
+                                                        class="font-large-2 text-bold-300 warning float-right">{{ App\Models\Recomended::where('status', 2)->count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Progres</span>
@@ -72,7 +72,7 @@
                                                 <div class="clearfix mb-1">
                                                     <i class="fa fa-folder font-large-1 blue-grey float-left mt-1"></i>
                                                     <span
-                                                        class="font-large-2 text-bold-300 danger float-right">{{ App\Models\Audit::where('status', 3)->count() }}</span>
+                                                        class="font-large-2 text-bold-300 danger float-right">{{ App\Models\Recomended::where('status', 3)->count() }}</span>
                                                 </div>
                                                 <div class="clearfix">
                                                     <span class="text-muted">Selesai</span>

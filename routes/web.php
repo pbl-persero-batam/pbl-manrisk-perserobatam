@@ -73,8 +73,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('tindak-lanjut', [TindakLanjutController::class, 'index'])->name('tindak-lanjut.index');
-    Route::get('tindak-lanjut/{audit}/show', [TindakLanjutController::class, 'show'])->name('tindak-lanjut.show');
-    Route::post('tindak-lanjut/{audit}/update', [TindakLanjutController::class, 'update'])->name('tindak-lanjut.update');
+    Route::get('tindak-lanjut/{recomended}/show', [TindakLanjutController::class, 'show'])->name('tindak-lanjut.show');
+    Route::post('tindak-lanjut/{recomended}/update', [TindakLanjutController::class, 'update'])->name('tindak-lanjut.update');
 
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('laporan/{id}/show', [LaporanController::class, 'show'])->name('laporan.show');
